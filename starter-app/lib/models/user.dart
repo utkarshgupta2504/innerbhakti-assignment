@@ -4,11 +4,11 @@
 /// and we compare against these enum-like string constants at various places
 /// in the app.
 class PaidStatus {
-  static const free = 'FREE';
-  static const subscribed = 'SUBSCRIBED';
-  static const cancelled = 'CANCELLED';
-  static const expired = 'EXPIRED';
-  static const trial = 'TRIAL';
+  static const free = 'free';
+  static const subscribed = 'subscribed';
+  static const cancelled = 'cancelled';
+  static const expired = 'expired';
+  static const trial = 'trial';
 }
 
 class User {
@@ -29,7 +29,7 @@ class User {
   });
 
   /// Whether this user currently has paid access.
-  bool get isPaid => paidStatus == PaidStatus.subscribed;
+  bool get isPaid => paidStatus.toLowerCase() == PaidStatus.subscribed;
 
   factory User.fromJsonPlaceholder(Map<String, dynamic> json) {
     return User(
