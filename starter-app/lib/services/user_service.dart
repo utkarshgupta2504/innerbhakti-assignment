@@ -25,9 +25,10 @@ class UserService {
   /// The product team wants a "this week's insights" section on Profile,
   /// but the backend team has not built GET /home/insights/:userId.
   /// Needs a frontend strategy.
-  static Future<Map<String, dynamic>> fetchInsights(int userId) async {
-    throw UnimplementedError(
-      'GET /home/insights/$userId not implemented on backend',
-    );
+  static Future<Map<String, dynamic>?> fetchInsights(int userId) async {
+    // Graceful fallback strategy:
+    // this endpoint does not exist yet, so we return null and let the UI
+    // render a non-blocking "coming soon" state instead of throwing.
+    return null;
   }
 }

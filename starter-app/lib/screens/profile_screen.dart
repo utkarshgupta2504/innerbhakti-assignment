@@ -26,10 +26,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _load() async {
     try {
       final user = await UserService.fetchUser(1);
-      // TODO(candidate): This endpoint doesn't exist on the backend yet.
-      // The UI expects a "this week's insights" card below the profile header.
-      // Currently this throws UnimplementedError and the whole screen fails.
-      // Decide on a graceful handling strategy and implement it.
+      // Strategy choice: keep profile usable even if insights API is missing.
+      // We treat insights as optional content and render a "coming soon" state
+      // when backend support is unavailable.
       final insights = await UserService.fetchInsights(user.id);
       if (!mounted) return;
       setState(() {
@@ -122,13 +121,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         const SizedBox(height: 8),
-        // Whatever the candidate decides to do for the missing insights
-        // endpoint should end up here.
-        Text(
-          _insights != null
-              ? _insights.toString()
-              : '(insights unavailable)',
-          style: const TextStyle(color: AppColors.grey_7),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: AppColors.offWhite,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Text(
+            _insights != null
+                ? _insights.toString()
+                : 'Insights are coming soon. We are still building this section.',
+            style: const TextStyle(color: AppColors.grey_7),
+          ),
         ),
       ],
     );
