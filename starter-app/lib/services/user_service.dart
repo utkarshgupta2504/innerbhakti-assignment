@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../models/user.dart';
+import 'user_mapper.dart';
 import '../utils/constants.dart';
 
 class UserService {
@@ -18,7 +19,7 @@ class UserService {
     }
 
     final json = jsonDecode(resp.body) as Map<String, dynamic>;
-    return User.fromJsonPlaceholder(json);
+    return UserMapper.fromJsonPlaceholder(json);
   }
 
   /// TODO: This endpoint does not exist on the backend yet.

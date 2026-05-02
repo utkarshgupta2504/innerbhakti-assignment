@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../models/user.dart';
+import 'user_mapper.dart';
 import '../utils/constants.dart';
 
 class AuthResult {
@@ -19,6 +21,7 @@ class AuthResult {
 class AuthService {
   /// In-memory token storage. OK for this assignment.
   static String? currentToken;
+  static User? currentUser;
 
   /// Calls the ReqRes mock login endpoint.
   /// ReqRes requires specific credentials; we map our UI 'phone' input to its
@@ -47,6 +50,7 @@ class AuthService {
         final body = jsonDecode(resp.body) as Map<String, dynamic>;
         final token = body['token'] as String?;
         currentToken = token;
+        currentUser = UserMapper.fromReqResLogin(body);
         return AuthResult.ok(token);
       }
 
@@ -60,5 +64,6 @@ class AuthService {
 
   static void logout() {
     currentToken = null;
+    currentUser = null;
   }
 }
