@@ -20,8 +20,11 @@ class AnalyticsService {
   }
 
   static void logSessionStart() {
+    final maskedUser = (_userId != null && _userId!.length >= 4)
+        ? '${_userId!.substring(0, 4)}***'
+        : 'anonymous';
     // ignore: avoid_print
-    print('[Analytics] session_start user=${_userId!.substring(0, 4)}***');
+    print('[Analytics] session_start user=$maskedUser');
   }
 
   static void logEvent(String eventName, {Map<String, dynamic>? properties}) {
