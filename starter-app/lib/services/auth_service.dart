@@ -35,7 +35,7 @@ class AuthService {
         headers: {
           'Content-Type': 'application/json',
           // ReqRes v1 requires an api key header as of 2024.
-          'x-api-key': 'reqres-free-v1',
+          'x-api-key': 'free_user_3DA3XAQBpXlL3bhLwEUWtwoHfkk',
         },
         body: jsonEncode({
           'email': 'eve.holt@reqres.in',
