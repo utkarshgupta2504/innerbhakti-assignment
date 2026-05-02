@@ -19,7 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _controller.loadHome(context);
+      _controller.loadHome(() {
+        if (!mounted) return;
+        Navigator.of(context).pushNamedAndRemoveUntil('/login', (_) => false);
+      });
     });
   }
 

@@ -34,7 +34,7 @@ class HomeController extends ChangeNotifier {
 
   /// Loads today's content AND the user profile.
   /// Also kicks off the session timer.
-  Future<void> loadHome(BuildContext context) async {
+  Future<void> loadHome(VoidCallback onSessionExpired) async {
     _loading = true;
     _loadError = null;
     notifyListeners();
@@ -64,7 +64,7 @@ class HomeController extends ChangeNotifier {
         'userIsPaid': _user?.isPaid ?? false,
       });
 
-      _startSessionTimer(context);
+      _startSessionTimer(onSessionExpired);
     } catch (e) {
       _loadError = e.toString();
     } finally {
@@ -79,18 +79,13 @@ class HomeController extends ChangeNotifier {
   }
 
   /// Starts a session timer. When it fires, the user is logged out.
-  void _startSessionTimer(BuildContext context) {
+  void _startSessionTimer(VoidCallback onSessionExpired) {
     _sessionTimer?.cancel();
     _sessionTimer = Timer(
-      Duration(milliseconds: AppConstants.sessionTimeoutMs),
+      const Duration(milliseconds: AppConstants.sessionTimeoutMs),
       () {
         AuthService.logout();
-        if (context.mounted) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-            '/login',
-            (_) => false,
-          );
-        }
+        onSessionExpired();
       },
     );
   }

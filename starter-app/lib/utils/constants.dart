@@ -4,7 +4,7 @@ class AppConstants {
 
   /// Session timeout in milliseconds.
   /// After this duration of inactivity, the user should be logged out.
-  static const sessionTimeoutMs = 3000;
+  static const sessionTimeoutMs = 1800000;
 
   /// Base URLs for the two backends the app uses.
   static const loginApiBase = 'https://reqres.in/api';
