@@ -1,0 +1,23 @@
+{
+  "date": "2026-04-16",
+  "mantra": {
+    "id": "m_101",
+    "title": "Om Namah Shivaya",
+    "durationSeconds": 180,
+    "audioUrl": "https://example.com/audio/m_101.mp3"
+  },
+  "prayer": {
+    "id": "p_55",
+    "title": "Morning Gratitude",
+    "language": "en",
+    "body": "A brief gratitude reflection for the day ahead."
+  },
+  "course": {
+    "id": "c_9",
+    "title": "Foundations of Calm",
+    "dayNumber": 3,
+    "totalDays": 21,
+    "coverImageUrl": "https://picsum.photos/seed/calm/400/240"
+  },
+  "streak": 5
+}

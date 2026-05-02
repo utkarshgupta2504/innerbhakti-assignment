@@ -1,0 +1,17 @@
+{
+  "date": "2026-04-17",
+  "mantra": {
+    "id": "m_102",
+    "title": "Gayatri Mantra",
+    "durationSeconds": 240,
+    "audioUrl": "https://example.com/audio/m_102.mp3"
+  },
+  "prayer": null,
+  "course": {
+    "id": "c_9",
+    "title": "Foundations of Calm",
+    "dayNumber": 4,
+    "totalDays": 21,
+    "coverImageUrl": "https://picsum.photos/seed/calm/400/240"
+  }
+}
