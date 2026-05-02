@@ -56,5 +56,29 @@ void main() {
       expect(today.date, '2026-04-16');
       expect(today.streak, 5);
     });
+
+    test('handles alternate home shape with missing optional fields', () {
+      final json = {
+        'date': '2026-04-17',
+        'mantra': {
+          'id': 'm_102',
+          'title': 'Gayatri Mantra',
+          'durationSeconds': 240,
+        },
+        'prayer': null,
+        'course': {
+          'id': 'c_9',
+          'title': 'Foundations of Calm',
+          'dayNumber': 4,
+          'totalDays': 21,
+          'coverImageUrl': 'https://example.com/i.jpg',
+        },
+      };
+
+      final today = HomeToday.fromJson(json);
+      expect(today.date, '2026-04-17');
+      expect(today.prayer, isNull);
+      expect(today.streak, 0);
+    });
   });
 }
