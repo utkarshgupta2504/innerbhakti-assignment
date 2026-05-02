@@ -1,7 +1,7 @@
 class HomeToday {
   final String date;
   final Mantra mantra;
-  final Prayer prayer;
+  final Prayer? prayer;
   final Course course;
   final int streak;
 
@@ -17,9 +17,11 @@ class HomeToday {
     return HomeToday(
       date: json['date'] as String,
       mantra: Mantra.fromJson(json['mantra'] as Map<String, dynamic>),
-      prayer: Prayer.fromJson(json['prayer'] as Map<String, dynamic>),
+      prayer: json['prayer'] == null
+          ? null
+          : Prayer.fromJson(json['prayer'] as Map<String, dynamic>),
       course: Course.fromJson(json['course'] as Map<String, dynamic>),
-      streak: json['streak'] as int,
+      streak: (json['streak'] as num?)?.toInt() ?? 0,
     );
   }
 }

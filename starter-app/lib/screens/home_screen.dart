@@ -155,8 +155,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         ContentCard(
           typeLabel: kContentTypePrayer,
-          title: today.prayer.title,
-          subtitle: today.prayer.body,
+          title: today.prayer?.title ?? 'Prayer unavailable today',
+          subtitle: today.prayer?.body ?? 'Please check back tomorrow.',
         ),
         ContentCard(
           typeLabel: kContentTypeCourse,
